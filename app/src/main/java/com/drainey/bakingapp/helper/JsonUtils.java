@@ -14,12 +14,12 @@ import java.util.List;
  */
 
 public class JsonUtils {
-    public static <T> List<T> getJavaList(Class<T> type, String jsonString, String arrayName){
+    public static <T> List<T> getListFromJsonArray(Class<T> type, String jsonString, String arrayName){
         JsonParser jsonParser = new JsonParser();
         JsonObject jo = (JsonObject)jsonParser.parse(jsonString);
         JsonArray jsonArray = jo.getAsJsonArray(arrayName);
         Type listType = TypeToken.getParameterized(List.class, type).getType();
-        List<T> actualIngredients = new Gson().fromJson(jsonArray, listType);
-        return actualIngredients;
+        List<T> objectList = new Gson().fromJson(jsonArray, listType);
+        return objectList;
     }
 }

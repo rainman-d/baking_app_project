@@ -31,7 +31,7 @@ public class JsonConversionTest {
     @Test
     public void testJsonIngredientConversionToListOfIngredients() throws JSONException{
         // get the ingredients built through JsonUtils utility method
-        List<Ingredient> actualIngredients = JsonUtils.getJavaList(Ingredient.class, testIngredientsArray, "ingredients");
+        List<Ingredient> actualIngredients = JsonUtils.getListFromJsonArray(Ingredient.class, testIngredientsArray, "ingredients");
 
         // get expected results
         List<Ingredient> expectedIngredients = getTestIngredients();
