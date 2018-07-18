@@ -1,18 +1,25 @@
 package com.drainey.bakingapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by david-rainey on 7/9/18.
  */
 
-public class Ingredient {
+public class Ingredient implements Parcelable{
     private String ingredient;
     private String measure;
-    private int quantity;
+    private double quantity;
 
     public Ingredient() {
     }
 
-    public Ingredient(String ingredient, String measure, int quantity) {
+    public Ingredient(Parcel in){
+        ReadFromParcel(in);
+    }
+
+    public Ingredient(String ingredient, String measure, double quantity) {
         this.ingredient = ingredient;
         this.measure = measure;
         this.quantity = quantity;
@@ -34,11 +41,11 @@ public class Ingredient {
         this.measure = measure;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
@@ -59,7 +66,7 @@ public class Ingredient {
     public int hashCode() {
         int result = getIngredient() != null ? getIngredient().hashCode() : 0;
         result = 31 * result + (getMeasure() != null ? getMeasure().hashCode() : 0);
-        result = 31 * result + getQuantity();
+//        result = 31 * result + getQuantity();
         return result;
     }
 
@@ -71,4 +78,32 @@ public class Ingredient {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(ingredient);
+        parcel.writeString(measure);
+        parcel.writeDouble(quantity);
+    }
+
+    private void ReadFromParcel(Parcel in){
+        ingredient = in.readString();
+        measure = in.readString();
+        quantity = in.readDouble();
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
+        public Ingredient createFromParcel(Parcel in){
+            return new Ingredient(in);
+        }
+
+        public Ingredient[] newArray(int size){
+            return new Ingredient[size];
+        }
+    };
 }

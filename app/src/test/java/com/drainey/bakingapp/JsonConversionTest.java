@@ -2,6 +2,7 @@ package com.drainey.bakingapp;
 
 import com.drainey.bakingapp.helper.JsonUtils;
 import com.drainey.bakingapp.model.Ingredient;
+import com.drainey.bakingapp.ui.RecipeListFragment;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -19,6 +20,8 @@ public class JsonConversionTest {
     private String testIngredientsArray = "{ingredients:[{quantity: 2,measure:\"CUP\",ingredient:\"Graham Cracker crumbs\"}, " +
             "{quantity:6,measure:\"TBLSP\",ingredient:\"unsalted butter, melted\"}]}";
     private String testIngredient = "{quantity: 2,measure:\"CUP\",ingredient:\"Graham Cracker crumbs\"}";
+
+    private RecipeListFragment mRecipeListFragment;
 
     @Test
     public void testJsonIngredientConversionToIngredientClass(){

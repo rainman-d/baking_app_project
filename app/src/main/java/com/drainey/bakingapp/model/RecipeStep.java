@@ -1,10 +1,13 @@
 package com.drainey.bakingapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by david-rainey on 7/9/18.
  */
 
-public class RecipeStep {
+public class RecipeStep implements Parcelable{
     private int id;
     private String shortDescription;
     private String description;
@@ -12,6 +15,10 @@ public class RecipeStep {
     private String thumbnailURL;
 
     public RecipeStep() {
+    }
+
+    public RecipeStep(Parcel in){
+        ReadFromParcel(in);
     }
 
     public RecipeStep(int id, String shortDescription, String description, String videoURL, String thumbnailURL) {
@@ -97,4 +104,36 @@ public class RecipeStep {
         result = 31 * result + (getThumbnailURL() != null ? getThumbnailURL().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(shortDescription);
+        parcel.writeString(description);
+        parcel.writeString(videoURL);
+        parcel.writeString(thumbnailURL);
+    }
+
+    private void ReadFromParcel(Parcel in){
+        id = in.readInt();
+        shortDescription = in.readString();
+        description = in.readString();
+        videoURL = in.readString();
+        thumbnailURL = in.readString();
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
+        public RecipeStep createFromParcel(Parcel in){
+            return new RecipeStep(in);
+        }
+
+        public RecipeStep[] newArray(int size){
+            return new RecipeStep[size];
+        }
+    };
 }
