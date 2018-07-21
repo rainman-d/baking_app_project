@@ -21,8 +21,8 @@
         </activity>
         <activity
             android:name=".ui.DetailActivity"
-            android:label="@string/title_activity_detail"
-            ></activity>
+            android:label="@string/title_activity_detail" />
+        <activity android:name=".ui.StepDetailActivity"></activity>
     </application>
 
 </manifest>

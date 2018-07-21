@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BakingApp</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="ingredients_label">Ingredients:</string>
+    <string name="recipe_steps">Steps</string>
+    <string name="previous_step_label">Previous Step</string>
+    <string name="next_step_label">Next Step</string>
 </resources>
