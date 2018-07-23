@@ -22,7 +22,9 @@
         <activity
             android:name=".ui.DetailActivity"
             android:label="@string/title_activity_detail" />
-        <activity android:name=".ui.StepDetailActivity"></activity>
+        <activity android:name=".ui.StepDetailActivity"
+            />
+        <!--android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"-->
     </application>
 
 </manifest>

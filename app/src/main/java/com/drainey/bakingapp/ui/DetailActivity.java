@@ -1,5 +1,6 @@
 package com.drainey.bakingapp.ui;
 
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,7 @@ import com.drainey.bakingapp.model.Recipe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements RecipeStepAdapter.OnStepClickListener {
     @BindView(R.id.tv_ingredients_list)TextView mIngredients;
     @BindView(R.id.rv_recipe_steps)RecyclerView stepsRecyclerView;
     private Recipe mRecipe;
@@ -31,6 +32,15 @@ public class DetailActivity extends AppCompatActivity {
             buildDetails();
         }
 
+        if(savedInstanceState == null) {
+            if (getResources().getBoolean(R.bool.is_tablet) && findViewById(R.id.recipe_detail_container) != null) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                StepDetailFragment detailFragment = StepDetailFragment.createInstance(mRecipe.getSteps(), 0);
+                fragmentManager.beginTransaction()
+                        .add(R.id.recipe_detail_container, detailFragment)
+                        .commit();
+            }
+        }
     }
 
     private void buildDetails(){
@@ -55,4 +65,11 @@ public class DetailActivity extends AppCompatActivity {
         stepsRecyclerView.setAdapter(recipeStepAdapter);
     }
 
+    @Override
+    public void onRecipeStepClicked(int position) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.recipe_detail_container, StepDetailFragment.createInstance(mRecipe.getSteps(), position))
+                .commit();
+    }
 }

@@ -25,15 +25,20 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     public static final String STEP_INDEX = "recipe_step_index";
     private List<RecipeStep> recipeSteps;
     Context mContext;
-
-    public RecipeStepAdapter(Context mContext) {
-        this.mContext = mContext;
-        this.recipeSteps = new ArrayList<>();
-    }
+    OnStepClickListener mCallback;
 
     public RecipeStepAdapter(List<RecipeStep> recipeSteps, Context mContext) {
         this.recipeSteps = recipeSteps;
         this.mContext = mContext;
+        try{
+            mCallback = (OnStepClickListener)mContext;
+        } catch (ClassCastException e){
+            throw new ClassCastException(mContext.toString() + " must implement OnStepClickListener");
+        }
+    }
+
+    public interface OnStepClickListener{
+        void onRecipeStepClicked(int position);
     }
 
     @Override
@@ -72,10 +77,14 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
                     int position = getAdapterPosition();
                     Context con = view.getContext();
                     if(position != RecyclerView.NO_POSITION){
-                        Intent intent = new Intent(mContext, StepDetailActivity.class);
-                        intent.putParcelableArrayListExtra(RECIPE_STEPS, new ArrayList<Parcelable>(recipeSteps));
-                        intent.putExtra(STEP_INDEX, position);
-                        mContext.startActivity(intent);
+                        if(mContext.getResources().getBoolean(R.bool.is_tablet)){
+                            mCallback.onRecipeStepClicked(position);
+                        } else {
+                            Intent intent = new Intent(mContext, StepDetailActivity.class);
+                            intent.putParcelableArrayListExtra(RECIPE_STEPS, new ArrayList<Parcelable>(recipeSteps));
+                            intent.putExtra(STEP_INDEX, position);
+                            mContext.startActivity(intent);
+                        }
                     }
                 }
             });

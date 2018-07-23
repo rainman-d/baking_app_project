@@ -1,6 +1,7 @@
 package com.drainey.bakingapp.data;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,14 +52,17 @@ public class RecipeAdapter extends BaseAdapter {
         if(view == null){
             LayoutInflater inflater = LayoutInflater.from(con);
             View v = inflater.inflate(R.layout.recipe_card, viewGroup, false);
+
             textView = (TextView) v.findViewById(R.id.tv_recipe_name);
+            if(mContext.getResources().getBoolean(R.bool.is_tablet)){
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            }
         } else {
             textView = (TextView)view;
         }
 
         textView.setText(mRecipeList.get(i).getName());
         textView.setBackground(mContext.getResources().getDrawable(R.drawable.background_card));
-//        textView.setBackgroundColor(mContext.getResources().getColor(R.color.yellow));
 
         return textView;
     }

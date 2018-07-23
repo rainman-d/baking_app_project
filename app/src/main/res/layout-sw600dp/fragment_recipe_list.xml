@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.drainey.bakingapp.ui.RecipeListFragment">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        android:id="@+id/recipes_grid_view"
+        android:layout_weight="7"
+        android:columnWidth="180dp"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:horizontalSpacing="24dp"
+        android:numColumns="3"
+        android:padding="8dp"
+        android:verticalSpacing="32dp">
+    </GridView>
+
+    <!--android:stretchMode="columnWidth"-->
+</LinearLayout>
