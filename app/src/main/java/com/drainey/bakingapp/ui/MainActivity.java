@@ -5,19 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.drainey.bakingapp.R;
 
-public class MainActivity extends AppCompatActivity implements  RecipeListFragment.OnRecipeClickListener {
+public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Choose Recipe");
+        getSupportActionBar().setTitle(getString(R.string.choose_recipe_label));
     }
 
-
-    @Override
-    public void onRecipeSelected(int position) {
-
-    }
 }

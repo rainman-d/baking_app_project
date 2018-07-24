@@ -232,7 +232,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     @Override
     public void onResume() {
         super.onResume();
-        // TODO testing this out
+
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE && !mDualPane) {
             ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) mPlayerView.getLayoutParams();
             ((AppCompatActivity)getActivity()).getSupportActionBar().hide();

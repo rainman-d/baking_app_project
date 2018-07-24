@@ -28,25 +28,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RecipeListFragment.OnRecipeClickListener} interface
- * to handle interaction events.
- * Use the {@link RecipeListFragment} factory method to
- * create an instance of this fragment.
- */
 public class RecipeListFragment extends Fragment implements LoaderManager.LoaderCallbacks<String> {
     private static final String LOG_TAG = RecipeListFragment.class.getSimpleName();
     public static final String RECIPE_DATA = "recipe_data";
     public static final int BAKING_DATA_LOADER_ID = 101;
     RecipeAdapter mRecipeAdapter;
-
-    OnRecipeClickListener mCallback;
-
-    public interface OnRecipeClickListener{
-        void onRecipeSelected(int position);
-    }
 
     public RecipeListFragment() {
         // Required empty public constructor
@@ -72,7 +58,6 @@ public class RecipeListFragment extends Fragment implements LoaderManager.Loader
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                mCallback.onRecipeSelected(position);
                 Recipe recipe = (Recipe) mRecipeAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                 intent.putExtra(RECIPE_DATA, recipe);
@@ -87,17 +72,12 @@ public class RecipeListFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        try {
-            mCallback = (OnRecipeClickListener)context;
-        } catch (ClassCastException e){
-            throw new ClassCastException(context.toString() + " must implement OnRecipeClickListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallback = null;
     }
 
     @Override

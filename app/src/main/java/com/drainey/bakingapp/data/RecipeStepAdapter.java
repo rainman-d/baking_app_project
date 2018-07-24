@@ -75,7 +75,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Context con = view.getContext();
+
                     if(position != RecyclerView.NO_POSITION){
                         if(mContext.getResources().getBoolean(R.bool.is_tablet)){
                             mCallback.onRecipeStepClicked(position);

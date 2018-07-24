@@ -7,7 +7,6 @@ import com.drainey.bakingapp.R;
 import com.drainey.bakingapp.model.RecipeStep;
 
 public class StepDetailActivity extends AppCompatActivity {
-    private RecipeStep mRecipeStep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
