@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Adopted from Shubhank Gupta's answer in StackOverflow post:
+https://stackoverflow.com/questions/33771996/how-to-make-relative-layout-look-like-cardview/33772009
+-->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
